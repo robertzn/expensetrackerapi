@@ -3,11 +3,7 @@ package in.bushansirgur.expensetrackerapi.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import in.bushansirgur.expensetrackerapi.entity.Expense;
 import in.bushansirgur.expensetrackerapi.service.ExpenseService;
@@ -24,14 +20,17 @@ public class ExpenseController {
 	}
 	
 	@GetMapping("/expenses/{id}")
-	public String getExpenseById(@PathVariable("id") Long id) {
-		return "The expense id is "+id;
+	public Expense getExpenseById(@PathVariable Long id) {
+		return expenseService.getExpenseById(id);
 	}
 	
 	@DeleteMapping("/expenses")
-	public String deleteExpenseById(@RequestParam("id")Long id) {
-		return "Delect the expense object by its id "+id;
-		
-		
+	public void deleteExpenseById(@RequestParam Long id) {
+		expenseService.deleteExpenseById(id);
+	}
+
+	@PostMapping("/expenses")
+	public void saveExpenseDetails(@RequestBody Expense expense){
+		System.out.println(" Printing the expense details::"+expense);
 	}
 }
