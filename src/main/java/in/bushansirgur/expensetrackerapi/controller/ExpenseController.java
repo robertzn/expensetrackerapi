@@ -13,7 +13,7 @@ public class ExpenseController {
 
 	@Autowired
 	private ExpenseService expenseService;
-	
+
 	@GetMapping("/expenses")
 	public List<Expense> getAllExpenses() {
 		return expenseService.getAllExpenses();
@@ -30,7 +30,12 @@ public class ExpenseController {
 	}
 
 	@PostMapping("/expenses")
-	public void saveExpenseDetails(@RequestBody Expense expense){
-		System.out.println(" Printing the expense details::"+expense);
+	public Expense saveExpenseDetails(@RequestBody Expense expense){
+		return expenseService.saveExpenseDetails(expense);
+	}
+
+	@PutMapping("/expenses/{id}")
+	public Expense updateExpenseDetails(@RequestBody Expense expense, @PathVariable Long id){
+		return expenseService.updateExpenseDetails(id, expense);
 	}
 }

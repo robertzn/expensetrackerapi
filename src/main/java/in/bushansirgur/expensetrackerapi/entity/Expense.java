@@ -1,5 +1,6 @@
 package in.bushansirgur.expensetrackerapi.entity;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -17,37 +18,24 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name ="tbl_expenses")
+@Table(name = "tbl_expenses")
 public class Expense {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column (name = "expense_name")
-	private String name;
-	private String description;
-	@Column(name = "expense_amount")
-	private String amount;
-	private String category;
-	private Date date;
-	public String getCategory() {
-		return category;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public Date getDate() {
-		return date;
-	}
-	public void setDate(Date date) {
-		this.date = date;
-	}
-	public void setCategory(String category) {
-		this.category = category;
-	}
 
+	@Column(name = "expense_name")
+	private String name;
+
+	private String description;
+
+	@Column(name = "expense_amount")
+	private BigDecimal amount;
+
+	private String category;
+
+	private Date date;
 }
+
+
